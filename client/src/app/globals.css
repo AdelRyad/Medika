@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table th,
+table td {
+    @apply px-1;
+    @apply py-2;
+    @apply text-center;
+}
+
+table th {
+    @apply text-sm;
+    @apply md:text-base;
+}
+
+table tbody {
+    @apply divide-y;
+    @apply divide-neutral-100;
+    @apply text-neutral-800;
+    @apply font-medium;
+    @apply md:text-sm;
+    @apply text-center;
+    @apply text-[10px];
+    @apply md:text-sm;
+}
+
+.scroll-bar::-webkit-scrollbar {
+    @apply w-1;
+}
+
+.scroll-bar::-webkit-scrollbar-track {
+    @apply bg-blue-50;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+    @apply bg-blue-500;
+    @apply rounded-full;
+}
+
+.scroll-bar-hidden::-webkit-scrollbar {
+    @apply hidden;
+}
