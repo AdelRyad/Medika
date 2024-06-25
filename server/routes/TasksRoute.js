@@ -36,7 +36,10 @@ router.post( "/", upload.array( 'file', 5 ), ( req, res ) =>
         title: req.body.title,
         date: req.body.date,
         time: req.body.time,
-        description: req.body.description
+        status: req.body.status,
+        description: req.body.description,
+        attachment: req.body.attachment,
+        assignedTo: req.body.assignedTo
     } );
     task.save()
         .then( ( data ) =>

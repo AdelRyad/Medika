@@ -1,5 +1,16 @@
 import mongoose from "mongoose";
 
+const AttachmentSchema = new mongoose.Schema( {
+    filename: {
+        type: String,
+        required: true
+    },
+    size: {
+        type: Number,
+        required: true
+    }
+}, { _id: false } );
+
 const TaskSchema = new mongoose.Schema( {
     title: {
         type: String,
@@ -22,17 +33,15 @@ const TaskSchema = new mongoose.Schema( {
         type: String,
         required: true
     },
-    Attachment: {
-        type: [
-            {
-                filename: String,
-                size: Number
-            }
-        ],
+    attachment: {
+        type: [ AttachmentSchema ],
         required: true
     },
-    AssignedTo: {
-        type: [ String ],
+    assignedTo: {
+        type: [ {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Doctor"
+        } ],
         required: true
     }
 } );

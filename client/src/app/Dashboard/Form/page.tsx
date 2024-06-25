@@ -2,31 +2,46 @@
 
 import axios from "axios";
 import React from "react";
-const FileUpload = () => {
+
+const FileUpload: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData();
-    const fileInput = event.target.elements.files;
-    const descriptionInput = event.target.description.value;
-    const assignedToInput = event.target.assignedTo.value;
+    const form = event.currentTarget;
+    const fileInput = form.elements.namedItem("files") as HTMLInputElement;
+    const descriptionInput = form.elements.namedItem(
+      "description"
+    ) as HTMLInputElement;
+    const assignedToInput = form.elements.namedItem(
+      "assignedTo"
+    ) as HTMLInputElement;
 
-    for (let i = 0; i < fileInput.files.length; i++) {
-      formData.append("files", fileInput.files[i]);
+    if (fileInput.files) {
+      for (let i = 0; i < fileInput.files.length; i++) {
+        formData.append("files", fileInput.files[i]);
+      }
     }
-    formData.append("description", descriptionInput);
-    formData.append("assignedTo", assignedToInput);
+    formData.append("description", descriptionInput.value);
+    formData.append("assignedTo", assignedToInput.value);
+
     console.log(formData);
 
     try {
-      axios.post("http://localhost:5000/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:5000/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data);
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <div className="flex justify-center items-center h-screen w-full col-span-9">
       <form
@@ -35,7 +50,7 @@ const FileUpload = () => {
       >
         <label
           htmlFor="dropzone-file"
-          className="flex p-4 flex-col items-center justify-center w-full h-64 border-2  border-dashed rounded-lg cursor-pointer  bg-gray-100 border-blue-600 hover:border-blue-500 hover:bg-neutral-200 "
+          className="flex p-4 flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-100 border-blue-600 hover:border-blue-500 hover:bg-neutral-200"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg
@@ -47,9 +62,9 @@ const FileUpload = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
               />
             </svg>
@@ -81,7 +96,7 @@ const FileUpload = () => {
           aria-label="assignedTo"
           name="assignedTo"
           type="text"
-          placeholder="AssignedTo"
+          placeholder="Assigned To"
         />
         <button
           className="bg-blue-400 text-white hover:bg-blue-500 p-3 rounded-lg"
