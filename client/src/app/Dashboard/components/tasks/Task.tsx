@@ -11,7 +11,7 @@ export type task = {
   time: string;
   status: string;
   description: string;
-  attachment: string;
+  attachment: [{ filename: string; size: number }];
   _id?: string;
 };
 const Task = ({ title, date, time, status, description, attachment }: task) => {

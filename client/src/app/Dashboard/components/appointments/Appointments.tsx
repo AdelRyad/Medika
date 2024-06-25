@@ -3,7 +3,7 @@ import calender from "../../../../../public/calendar-02.svg";
 import sorting from "../../../../../public/sorting-01.svg";
 import DropDown from "../DropDown";
 import Button from "./Button";
-import Table, { patient } from "./Table";
+import Table from "./Table";
 
 const Appointments = async () => {
   const res = await axios.get(process.env.NEXT_PUBLIC_API + "/api/patients");
