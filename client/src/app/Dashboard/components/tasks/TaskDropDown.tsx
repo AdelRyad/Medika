@@ -12,9 +12,10 @@ const DropDown = ({
   attachment,
 }: {
   description: string;
-  attachment: string;
+  attachment: [{ filename: string; size: number }];
 }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <>
       <div onClick={() => setOpen(!open)}>

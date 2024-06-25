@@ -6,7 +6,7 @@ import Button from "./Button";
 import Table, { patient } from "./Table";
 
 const Appointments = async () => {
-  const res = await axios.get(`http://localhost:5000/api/patients/:0`);
+  const res = await axios.get(process.env.NEXT_PUBLIC_API + "/api/patients");
   const data = res.data;
 
   return (

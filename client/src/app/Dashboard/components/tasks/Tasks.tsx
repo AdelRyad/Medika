@@ -4,7 +4,7 @@ import DropDown from "../DropDown";
 import axios from "axios";
 import { task } from "@/app/Dashboard/components/tasks/Task";
 const Tasks = async () => {
-  const res = await axios.get("http://localhost:5000/api/tasks");
+  const res = await axios.get(process.env.NEXT_PUBLIC_API + "/api/tasks");
   const data = res.data;
   return (
     <div className="flex flex-col w-full h-full gap-4 ">

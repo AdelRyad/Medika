@@ -1,10 +1,12 @@
 "use client";
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const FileUpload: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>("");
+  const router = useRouter();
 
   const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedStatus(event.target.value);
@@ -41,7 +43,7 @@ const FileUpload: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/tasks",
+        process.env.NEXT_PUBLIC_API + "/api/tasks",
         formData,
         {
           headers: {
@@ -49,6 +51,10 @@ const FileUpload: React.FC = () => {
           },
         }
       );
+      if (response.status === 200) {
+        router.push("/Dashboard");
+      }
+
       console.log(response.data);
     } catch (err) {
       console.error(err);

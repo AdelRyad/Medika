@@ -47,7 +47,7 @@ const Table = ({ data }: { data: any[] }) => {
               time={item.time}
               type={item.type}
               status={item.status}
-              doctor={item.doctor}
+              doctor={"Omar "}
             />
           ))}
         </tbody>

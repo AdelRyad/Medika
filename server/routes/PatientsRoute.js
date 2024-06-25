@@ -22,7 +22,7 @@ router.post( "/", ( req, res ) =>
         } );
 } );
 
-router.get( "/:page", ( req, res ) =>
+router.get( "/", ( req, res ) =>
 {
     PatientModel.find().limit( 6 ).skip( req.params.page * 6 )
         .then( ( data ) =>
