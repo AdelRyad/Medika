@@ -12,6 +12,10 @@ app.use( express.json() );
 app.use( cors( {
     origin: "*",
 } ) );
+app.get( '/', ( req, res ) =>
+{
+    res.json( { message: 'Hello from Vercel!' } );
+} );
 app.use( express.static( 'uploads' ) );
 app.use( '/api/patients', PatientRoute );
 app.use( '/api/tasks', TaskRoute );
