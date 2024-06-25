@@ -1,17 +1,28 @@
 "use client";
 
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 
 const FileUpload: React.FC = () => {
+  const [selectedStatus, setSelectedStatus] = useState<string>("");
+
+  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedStatus(event.target.value);
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const date = new Date();
+    const time = date.toLocaleTimeString();
+    const dateString = date.toLocaleDateString();
     const formData = new FormData();
     const form = event.currentTarget;
     const fileInput = form.elements.namedItem("files") as HTMLInputElement;
     const descriptionInput = form.elements.namedItem(
       "description"
     ) as HTMLInputElement;
+    const statusInput = form.elements.namedItem("status") as HTMLInputElement;
+    const titleInput = form.elements.namedItem("title") as HTMLInputElement;
     const assignedToInput = form.elements.namedItem(
       "assignedTo"
     ) as HTMLInputElement;
@@ -21,14 +32,16 @@ const FileUpload: React.FC = () => {
         formData.append("files", fileInput.files[i]);
       }
     }
+    formData.append("title", titleInput.value);
     formData.append("description", descriptionInput.value);
+    formData.append("status", statusInput.value);
+    formData.append("date", dateString);
+    formData.append("time", time);
     formData.append("assignedTo", assignedToInput.value);
-
-    console.log(formData);
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "http://localhost:5000/api/tasks",
         formData,
         {
           headers: {
@@ -86,11 +99,32 @@ const FileUpload: React.FC = () => {
         </label>
         <input
           className="border border-neutral-200 p-3 rounded-lg w-full focus:outline-none"
+          aria-label="title"
+          name="title"
+          type="text"
+          placeholder="title"
+        />
+        <input
+          className="border border-neutral-200 p-3 rounded-lg w-full focus:outline-none"
           aria-label="description"
           name="description"
           type="text"
           placeholder="Description"
         />
+        <select
+          aria-label="statusSelect"
+          title="Select Status"
+          name="status"
+          id="statusSelect "
+          className="form-control border border-neutral-200 p-3 rounded-lg w-full focus:outline-none "
+          value={selectedStatus}
+          defaultValue={"On Hold"}
+          onChange={handleStatusChange}
+        >
+          <option value="On Hold">On Hold</option>
+          <option value="Completed">Completed</option>
+          <option value="Canceled">Canceled</option>
+        </select>
         <input
           className="border border-neutral-200 p-3 rounded-lg w-full focus:outline-none"
           aria-label="assignedTo"

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import DoctorModel from "./Doctor";
 const PatientSchema = new mongoose.Schema( {
 
     name: {

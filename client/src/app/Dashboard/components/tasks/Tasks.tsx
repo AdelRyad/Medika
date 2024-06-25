@@ -1,6 +1,4 @@
-import Image from "next/image";
 import React from "react";
-import arrow from "../../../../public/Vector.svg";
 import Task from "./Task";
 import DropDown from "../DropDown";
 import axios from "axios";

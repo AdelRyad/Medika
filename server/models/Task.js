@@ -35,13 +35,9 @@ const TaskSchema = new mongoose.Schema( {
     },
     attachment: {
         type: [ AttachmentSchema ],
-        required: true
     },
     assignedTo: {
-        type: [ {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Doctor"
-        } ],
+        type: String,
         required: true
     }
 } );

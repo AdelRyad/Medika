@@ -20,7 +20,7 @@ router.get( "/", ( req, res ) =>
 const storage = multer.diskStorage( {
     destination: ( req, file, cb ) =>
     {
-        cb( null, 'uploads/' );
+        cb( null, 'uploads' );
     },
     filename: ( req, file, cb ) =>
     {
@@ -29,18 +29,21 @@ const storage = multer.diskStorage( {
 } );
 const upload = multer( { storage } );
 
-router.post( "/", upload.array( 'file', 5 ), ( req, res ) =>
+router.post( "/", upload.array( 'files', 5 ), ( req, res ) =>
 {
-
     const task = new TaskModel( {
         title: req.body.title,
         date: req.body.date,
         time: req.body.time,
         status: req.body.status,
         description: req.body.description,
-        attachment: req.body.attachment,
+        attachment: req.files.map( file => ( {
+            filename: file.originalname,
+            size: file.size
+        } ) ),
         assignedTo: req.body.assignedTo
     } );
+
     task.save()
         .then( ( data ) =>
         {
@@ -51,5 +54,6 @@ router.post( "/", upload.array( 'file', 5 ), ( req, res ) =>
             res.send( error );
         } );
 } );
+
 
 export default router;
