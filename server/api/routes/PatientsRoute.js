@@ -35,5 +35,23 @@ router.get( "/", ( req, res ) =>
         } );
 } );
 
+router.post( '/', ( req, res ) =>
+{
+    const patient = new PatientModel( {
+        name: req.body.name,
+        time: req.body.time,
+        type: req.body.type,
+        status: req.body.status,
+        doctor: req.body.doctor
+    } );
+    patient.save().then( ( data ) =>
+    {
+        res.send( 'created' );
+    } )
+        .catch( ( error ) =>
+        {
+            res.send( error );
+        } );
+} );
 
 export default router;

@@ -54,8 +54,6 @@ const FileUpload: React.FC = () => {
       if (response.status === 200) {
         router.push("/Dashboard");
       }
-
-      console.log(response.data);
     } catch (err) {
       console.error(err);
     }
@@ -109,6 +107,7 @@ const FileUpload: React.FC = () => {
           name="title"
           type="text"
           placeholder="title"
+          required
         />
         <input
           className="border border-neutral-200 p-3 rounded-lg w-full focus:outline-none"
@@ -116,6 +115,7 @@ const FileUpload: React.FC = () => {
           name="description"
           type="text"
           placeholder="Description"
+          required
         />
         <select
           aria-label="statusSelect"
@@ -137,6 +137,7 @@ const FileUpload: React.FC = () => {
           name="assignedTo"
           type="text"
           placeholder="Assigned To"
+          required
         />
         <button
           className="bg-blue-400 text-white hover:bg-blue-500 p-3 rounded-lg"

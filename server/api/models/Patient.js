@@ -11,6 +11,7 @@ const PatientSchema = new mongoose.Schema( {
     },
     type: {
         type: String,
+        enum: [ "Follow Up", "Urgent" ],
         required: true
     },
     status: {
@@ -19,8 +20,7 @@ const PatientSchema = new mongoose.Schema( {
         required: true
     },
     doctor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Doctor",
+        type: String,
         required: true
     }
 } );
