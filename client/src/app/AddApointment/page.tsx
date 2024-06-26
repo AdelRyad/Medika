@@ -41,8 +41,8 @@ const FileUpload: React.FC = () => {
       );
       console.log(response);
 
-      if (response.status === 200) {
-        // router.push("/Dashboard");
+      if (response.data === "created") {
+        router.push("/Dashboard");
       }
     } catch (err) {
       console.error(err);

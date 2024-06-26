@@ -32,7 +32,7 @@ const TableRow = ({
           <p className="md:ml-3 ml-1">{name}</p>
         </div>
       </td>
-      <td>1{time}</td>
+      <td>{time.slice(0, 5).concat(time.slice(8, 11))}</td>
       <td>{type}</td>
       <td>
         <span
