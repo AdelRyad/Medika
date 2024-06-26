@@ -4,12 +4,9 @@ import DropDown from "../DropDown";
 import axios from "axios";
 import { task } from "@/app/Dashboard/components/tasks/Task";
 const Tasks = async () => {
-  const res = await axios.get(process.env.NEXT_PUBLIC_API + "/api/tasks", {
-    headers: {
-      "Cache-Control": "no-cache",
-    },
-  });
+  const res = await axios.get(process.env.NEXT_PUBLIC_API + "/api/tasks");
   const data = res.data;
+  console.log(data);
   return (
     <div className="flex flex-col w-full h-full gap-4 ">
       <div className="flex justify-between w-full items-center h-fit ">
