@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import PatientRoute from "./routes/PatientsRoute.js";
-import TaskRoute from "./routes/TasksRoute.js";
-
+import TaskRoute from './routes/TasksRoute.js';
 
 const app = express();
 dotenv.config();
