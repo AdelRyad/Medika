@@ -62,9 +62,9 @@ const FileUpload: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-full col-span-9">
+    <div className="flex justify-center items-center h-screen w-full col-span-10 md:col-span-9">
       <form
-        className="flex flex-col gap-5 border border-neutral-200 p-3 rounded-lg w-1/3"
+        className="flex flex-col gap-5 border border-neutral-200 p-3 rounded-lg w-[90%] md:w-1/2"
         onSubmit={handleSubmit}
       >
         <label
