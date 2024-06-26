@@ -79,16 +79,16 @@ const FileUpload: React.FC = () => {
         </select>
         <select
           aria-label="typeSelect"
-          title="Select Status"
+          title="Select Type"
           name="type"
           id="typeSelect"
           className="form-control border border-neutral-200 p-3 rounded-lg w-full focus:outline-none "
           value={selectedStatus}
-          defaultValue={"On Hold"}
+          defaultValue={"Urgent"}
           onChange={handleTypeChange}
         >
-          <option value="On Hold">Urgent</option>
-          <option value="Completed">Follow Up</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Follow Up">Follow Up</option>
         </select>
         <input
           className="border border-neutral-200 p-3 rounded-lg w-full focus:outline-none"
