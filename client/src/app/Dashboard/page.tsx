@@ -3,7 +3,7 @@ import LineChart from "./components/chart/LineChart";
 import StatusCards from "./components/statusCards/StatusCards";
 import Tasks from "./components/tasks/Tasks";
 import RecentActivity from "./components/Recent Activity/RecentActivity";
-
+export const dynamic = "force-dynamic";
 const Home = () => {
   return (
     <main className="flex flex-col   overflow-auto  lg:grid md:grid-cols-10 md:grid-rows-12  lg:overflow-hidden  gap-6  col-span-10 row-span-11 md:col-start-3 md:row-start-2 md:p-6 p-3 pt-0 md:pt-6">
